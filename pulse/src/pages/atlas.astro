@@ -2,11 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Hero from '../components/Hero.astro';
 import OpportunityCard from '../components/OpportunityCard.astro';
-import { ALL_TAGS, filterOpportunities, siteConfig } from '../lib/data';
-
-const q = Astro.url.searchParams.get('q') ?? '';
-const tag = Astro.url.searchParams.get('tag');
-const results = filterOpportunities(q, tag);
+import { ALL_TAGS, allOpportunities, siteConfig } from '../lib/data';
 
 const suggestSubject = encodeURIComponent('RI Fulbright Pulse — Suggest an addition');
 const suggestBody = encodeURIComponent('Name:\nURL:\nCategory:\nDescription:\n');
@@ -17,52 +13,52 @@ const mailto = `mailto:${siteConfig.suggestEmail}?subject=${suggestSubject}&body
   <Hero title="Opportunity Atlas" subtitle="Verified public links for advising, chapters, events, and international programs." />
 
   <section class="mx-auto max-w-6xl px-4 py-10" id="suggest">
-    <form method="get" class="rounded-xl bg-white p-6 shadow-sm ring-1 ring-stone-200">
+    <form id="atlas-filter-form" class="rounded-xl bg-white p-6 shadow-sm ring-1 ring-stone-200">
       <label class="block text-sm font-semibold text-stone-700" for="q">Search</label>
       <input
         id="q"
         name="q"
         type="search"
-        value={q}
         placeholder="Mentorship, Brown, events…"
         class="mt-1 w-full rounded-lg border border-stone-300 px-3 py-2 text-stone-900 focus:border-ri-navy focus:outline-none focus:ring-2 focus:ring-ri-navy/20"
       />
       <fieldset class="mt-4">
         <legend class="text-sm font-semibold text-stone-700">Category</legend>
-        <div class="mt-2 flex flex-wrap gap-2">
-          <a
-            href={`/atlas${q ? `?q=${encodeURIComponent(q)}` : ''}`}
-            class:list={[
-              'rounded-full px-3 py-1 text-sm font-medium',
-              !tag ? 'bg-ri-navy text-white' : 'bg-stone-100 text-stone-700 hover:bg-stone-200',
-            ]}
-          >All</a>
-          {
-            ALL_TAGS.map((t) => (
-              <a
-                href={`/atlas?tag=${encodeURIComponent(t)}${q ? `&q=${encodeURIComponent(q)}` : ''}`}
-                class:list={[
-                  'rounded-full px-3 py-1 text-sm font-medium',
-                  tag === t ? 'bg-ri-navy text-white' : 'bg-stone-100 text-stone-700 hover:bg-stone-200',
-                ]}
-              >
-                {t}
-              </a>
-            ))
-          }
-        </div>
+        <label class="sr-only" for="tag">Category</label>
+        <select
+          id="tag"
+          name="tag"
+          class="mt-2 w-full rounded-lg border border-stone-300 px-3 py-2 text-sm text-stone-900 focus:border-ri-navy focus:outline-none focus:ring-2 focus:ring-ri-navy/20"
+        >
+          <option value="">All categories</option>
+          {ALL_TAGS.map((t) => (
+            <option value={t}>
+              {t}
+            </option>
+          ))}
+        </select>
       </fieldset>
       <button type="submit" class="mt-4 rounded-lg bg-ri-navy px-4 py-2 text-sm font-semibold text-white hover:bg-ri-navy/90">
         Apply filters
       </button>
+      <button id="atlas-reset" type="button" class="ml-3 text-sm text-stone-600 underline">Reset</button>
     </form>
 
-    <p class="mt-6 text-sm text-stone-600">{results.length} resource{results.length === 1 ? '' : 's'}</p>
-    <div class="mt-6 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-      {results.map((item) => (
-        <OpportunityCard item={item} />
+    <p id="atlas-count" class="mt-6 text-sm text-stone-600">
+      {allOpportunities.length} resource{allOpportunities.length === 1 ? '' : 's'}
+    </p>
+    <div id="atlas-grid" class="mt-6 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+      {allOpportunities.map((item) => (
+        <div
+          class="atlas-item"
+          data-tags={item.tags.join('|')}
+          data-search={[item.name, item.description, ...item.tags, ...item.audience].join(' ').toLowerCase()}
+        >
+          <OpportunityCard item={item} />
+        </div>
       ))}
     </div>
+    <p id="atlas-empty" class="mt-8 hidden text-center text-stone-600">No resources match your filters.</p>
 
     <div class="mt-12 rounded-xl border border-dashed border-ri-gold bg-ri-gold/10 p-6 text-center">
       <h2 class="font-display text-lg font-bold text-ri-navy">Missing something?</h2>
@@ -70,4 +66,62 @@ const mailto = `mailto:${siteConfig.suggestEmail}?subject=${suggestSubject}&body
       <a href={mailto} class="mt-4 inline-block rounded-lg bg-ri-navy px-5 py-2 text-sm font-semibold text-white">Suggest an addition</a>
     </div>
   </section>
+  <script is:inline>
+    const form = document.querySelector('#atlas-filter-form');
+    const qInput = document.querySelector('#q');
+    const tagInput = document.querySelector('#tag');
+    const resetBtn = document.querySelector('#atlas-reset');
+    const countEl = document.querySelector('#atlas-count');
+    const emptyEl = document.querySelector('#atlas-empty');
+    const items = Array.from(document.querySelectorAll('.atlas-item'));
+    const total = items.length;
+
+    function applyFilters() {
+      const q = (qInput.value || '').trim().toLowerCase();
+      const tag = tagInput.value || '';
+      let visible = 0;
+
+      for (const item of items) {
+        const tags = (item.dataset.tags || '').split('|');
+        const matchTag = !tag || tags.includes(tag);
+        const matchQ = !q || (item.dataset.search || '').includes(q);
+        const show = matchTag && matchQ;
+        item.classList.toggle('hidden', !show);
+        if (show) visible += 1;
+      }
+
+      if (countEl) countEl.textContent = `${visible} resource${visible === 1 ? '' : 's'}`;
+      if (emptyEl) emptyEl.classList.toggle('hidden', visible > 0);
+    }
+
+    function syncFromUrl() {
+      const params = new URLSearchParams(window.location.search);
+      qInput.value = params.get('q') || '';
+      tagInput.value = params.get('tag') || '';
+      applyFilters();
+    }
+
+    function syncToUrl() {
+      const params = new URLSearchParams();
+      if (qInput.value) params.set('q', qInput.value);
+      if (tagInput.value) params.set('tag', tagInput.value);
+      const query = params.toString();
+      window.history.replaceState({}, '', query ? `/atlas?${query}` : '/atlas');
+    }
+
+    form?.addEventListener('submit', (event) => {
+      event.preventDefault();
+      applyFilters();
+      syncToUrl();
+    });
+
+    resetBtn?.addEventListener('click', () => {
+      qInput.value = '';
+      tagInput.value = '';
+      applyFilters();
+      window.history.replaceState({}, '', '/atlas');
+    });
+
+    syncFromUrl();
+  </script>
 </BaseLayout>

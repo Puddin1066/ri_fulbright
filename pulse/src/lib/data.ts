@@ -14,6 +14,7 @@ export const ALL_TAGS = [
   'Cultural Institutions',
   'International Visitors',
   'Public Events',
+  'Community Partners',
   'AI & Digital Tools',
   'Rhode Island Innovation',
 ] as const;

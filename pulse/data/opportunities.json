@@ -208,5 +208,195 @@
     "actionLabel": "NH calendar",
     "actionUrl": "https://newhampshire.fulbrightchapters.org/calendar/",
     "lastVerified": "2026-05-19"
+  },
+  {
+    "id": "global-brown-center",
+    "name": "Brown University — Global Brown Center",
+    "description": "For Fulbright applicants, alumni, and visiting scholars connected to Brown, the Global Brown Center offers international community programming and a natural networking node for cross-cultural engagement in Providence.",
+    "tags": ["Universities", "International Visitors"],
+    "audience": ["Applicants", "Alumni", "Community Partners"],
+    "actionLabel": "Global Brown Center",
+    "actionUrl": "https://gbc.brown.edu/",
+    "lastVerified": "2026-05-19"
+  },
+  {
+    "id": "uri-in-the-world",
+    "name": "URI in the World — International Center",
+    "description": "For Fulbright applicants and partners at URI, this global education hub connects study abroad, international exchange, and faculty-led programming that can support applicant preparation and visiting-scholar engagement.",
+    "tags": ["Universities", "International Visitors"],
+    "audience": ["Applicants", "Community Partners"],
+    "actionLabel": "URI global hub",
+    "actionUrl": "https://web.uri.edu/global/about/",
+    "lastVerified": "2026-05-19"
+  },
+  {
+    "id": "wacri-home",
+    "name": "World Affairs Council of Rhode Island",
+    "description": "For Fulbright alumni and applicants interested in diplomacy, global affairs, and civic exchange, WACRI offers speaker programs and a Rhode Island network for internationally minded community engagement.",
+    "tags": ["Public Events", "Alumni Networking"],
+    "audience": ["Alumni", "Applicants", "Community Partners"],
+    "actionLabel": "WACRI events",
+    "actionUrl": "https://www.thewacri.org/",
+    "lastVerified": "2026-05-19"
+  },
+  {
+    "id": "wacri-global-ties",
+    "name": "WACRI Global Ties / IVLP",
+    "description": "For Fulbright alumni and community partners who want to host, brief, or collaborate with international visitors, WACRI's Global Ties work connects State Department delegations with Rhode Island institutions.",
+    "tags": ["International Visitors", "Public Events"],
+    "audience": ["Community Partners", "Alumni"],
+    "actionLabel": "Global visitors program",
+    "actionUrl": "https://www.thewacri.org/page-18073",
+    "lastVerified": "2026-05-19"
+  },
+  {
+    "id": "ri-bio",
+    "name": "RI Bio",
+    "description": "For Fulbright applicants and alumni in life sciences, biotech, and public health, RI Bio is a statewide network for industry events, research translation, and career or collaboration connections.",
+    "tags": ["Rhode Island Innovation", "Alumni Networking"],
+    "audience": ["Alumni", "Community Partners"],
+    "actionLabel": "RI Bio network",
+    "actionUrl": "https://ri-bio.org/",
+    "lastVerified": "2026-05-19"
+  },
+  {
+    "id": "ri-life-science-hub",
+    "name": "RI Life Science Hub",
+    "description": "For Fulbright-linked researchers, founders, and health innovators, the RI Life Science Hub offers a path into Rhode Island's commercialization, funding, and partnership ecosystem.",
+    "tags": ["Rhode Island Innovation", "Community Partners"],
+    "audience": ["Alumni", "Community Partners"],
+    "actionLabel": "Life science hub",
+    "actionUrl": "https://www.rilifescience.com/",
+    "lastVerified": "2026-05-19"
+  },
+  {
+    "id": "nemic",
+    "name": "NEMIC — New England Medical Innovation Center",
+    "description": "For Fulbright researchers and alumni in medtech, public health, or clinical innovation, NEMIC provides Providence-based advising and commercialization support for translating ideas into health technology.",
+    "tags": ["Rhode Island Innovation", "Public Events"],
+    "audience": ["Alumni", "Community Partners"],
+    "actionLabel": "NEMIC programs",
+    "actionUrl": "https://nemic.org/",
+    "lastVerified": "2026-05-19"
+  },
+  {
+    "id": "ocean-state-labs",
+    "name": "Ocean State Labs (Portal Innovations)",
+    "description": "For Fulbright alumni or partners building biotech and medtech collaborations, Ocean State Labs is a Providence-based incubator node for lab access, company formation, and research translation.",
+    "tags": ["Rhode Island Innovation", "Community Partners"],
+    "audience": ["Alumni", "Community Partners"],
+    "actionLabel": "Ocean State Labs",
+    "actionUrl": "https://www.portalinnovations.com/2026/02/11/portal-officially-launches-ocean-state-labs-in-providence/",
+    "lastVerified": "2026-05-19"
+  },
+  {
+    "id": "ri-commerce",
+    "name": "Rhode Island Commerce",
+    "description": "For Fulbright alumni, applicants, and institutional partners exploring how global research or exchange can create local impact, RI Commerce is the statewide economic-development entry point for business assistance, sector partnerships, and innovation resources.",
+    "tags": ["Rhode Island Innovation", "Community Partners"],
+    "audience": ["Alumni", "Community Partners"],
+    "actionLabel": "RI Commerce resources",
+    "actionUrl": "https://commerceri.com/",
+    "lastVerified": "2026-05-19"
+  },
+  {
+    "id": "commerce-ri-innovation",
+    "name": "Rhode Island Commerce — Innovation Programs",
+    "description": "For Fulbright applicants and alumni pursuing research translation, entrepreneurship, or policy-impact work, RI Commerce innovation programs can support R&D partnerships, vouchers, and commercialization pathways.",
+    "tags": ["Rhode Island Innovation", "Community Partners"],
+    "audience": ["Alumni", "Community Partners"],
+    "actionLabel": "Innovation assistance",
+    "actionUrl": "https://commerceri.com/business-assistance/innovation/",
+    "lastVerified": "2026-05-19"
+  },
+  {
+    "id": "i195-district",
+    "name": "I-195 District (Providence Innovation District)",
+    "description": "For Fulbright-linked founders, researchers, and institutional partners, the I-195 District is Rhode Island's innovation corridor for lab space, startup infrastructure, and cross-sector collaboration.",
+    "tags": ["Rhode Island Innovation", "Community Partners"],
+    "audience": ["Alumni", "Community Partners"],
+    "actionLabel": "Innovation district",
+    "actionUrl": "http://195district.com/",
+    "lastVerified": "2026-05-19"
+  },
+  {
+    "id": "rihub",
+    "name": "RIHub (state startup resource)",
+    "description": "For Fulbright alumni exploring venture creation or social-impact entrepreneurship in Rhode Island, RIHub is a startup-network node for founder programming and ecosystem navigation.",
+    "tags": ["Rhode Island Innovation", "Alumni Networking"],
+    "audience": ["Alumni", "Community Partners"],
+    "actionLabel": "RIHub resources",
+    "actionUrl": "https://eoc.ri.gov/business-resources/rihub",
+    "lastVerified": "2026-05-19"
+  },
+  {
+    "id": "uri-sea-grant",
+    "name": "Rhode Island Sea Grant",
+    "description": "For Fulbright applicants and alumni in oceanography, coastal resilience, fisheries, or marine policy, Rhode Island Sea Grant connects URI research with public-facing coastal and sustainability work.",
+    "tags": ["Universities", "Rhode Island Innovation"],
+    "audience": ["Applicants", "Alumni", "Community Partners"],
+    "actionLabel": "Sea Grant programs",
+    "actionUrl": "https://www.seagrant.gso.uri.edu/",
+    "lastVerified": "2026-05-19"
+  },
+  {
+    "id": "uri-coastal-institute",
+    "name": "URI Coastal Institute",
+    "description": "For Fulbright researchers working on climate, coasts, and environmental resilience, the URI Coastal Institute is a collaboration node connecting interdisciplinary scholarship with applied solutions.",
+    "tags": ["Universities", "Rhode Island Innovation"],
+    "audience": ["Applicants", "Community Partners"],
+    "actionLabel": "Coastal Institute",
+    "actionUrl": "https://ci.uri.edu/",
+    "lastVerified": "2026-05-19"
+  },
+  {
+    "id": "ri-climate-office",
+    "name": "RI State Climate Office",
+    "description": "For Fulbright applicants and alumni focused on climate science, adaptation, or environmental policy, the RI State Climate Office offers state-level data and context for local research translation.",
+    "tags": ["Rhode Island Innovation", "Community Partners"],
+    "audience": ["Applicants", "Alumni", "Community Partners"],
+    "actionLabel": "Climate office",
+    "actionUrl": "https://dem.ri.gov/ri-climate-office",
+    "lastVerified": "2026-05-19"
+  },
+  {
+    "id": "pell-center",
+    "name": "Pell Center for International Relations and Public Policy",
+    "description": "For Fulbright applicants and alumni in diplomacy, public policy, security, and civic life, the Pell Center offers Rhode Island programming connected to international relations and democratic governance.",
+    "tags": ["Universities", "Alumni Networking"],
+    "audience": ["Applicants", "Alumni", "Community Partners"],
+    "actionLabel": "Pell Center programs",
+    "actionUrl": "http://www.salve.edu/pellCenter",
+    "lastVerified": "2026-05-19"
+  },
+  {
+    "id": "brown-rhodes-center",
+    "name": "Brown Rhodes Center for International Economics and Finance",
+    "description": "For Fulbright applicants and alumni working on economics, development, finance, or global policy, the Rhodes Center provides Brown-based research and events connecting international systems to local questions.",
+    "tags": ["Universities", "Alumni Networking"],
+    "audience": ["Applicants", "Alumni"],
+    "actionLabel": "Rhodes Center",
+    "actionUrl": "https://rhodes.watson.brown.edu/",
+    "lastVerified": "2026-05-19"
+  },
+  {
+    "id": "risca",
+    "name": "Rhode Island State Council on the Arts (RISCA)",
+    "description": "For Fulbright applicants and alumni in arts, culture, and community practice, RISCA is a statewide node for cultural sustainability, arts funding, and intercultural programming.",
+    "tags": ["Cultural Institutions", "Rhode Island Innovation"],
+    "audience": ["Applicants", "Alumni", "Community Partners"],
+    "actionLabel": "RISCA programs",
+    "actionUrl": "https://arts.ri.gov/",
+    "lastVerified": "2026-05-19"
+  },
+  {
+    "id": "risd-museum",
+    "name": "RISD Museum",
+    "description": "For Fulbright applicants and alumni in arts, design, museum studies, and cultural exchange, RISD Museum offers a Providence anchor for global collections, public programming, and institutional collaboration.",
+    "tags": ["Cultural Institutions", "Public Events"],
+    "audience": ["Applicants", "Alumni", "Community Partners"],
+    "actionLabel": "RISD Museum",
+    "actionUrl": "https://risdmuseum.org/",
+    "lastVerified": "2026-05-19"
   }
 ]

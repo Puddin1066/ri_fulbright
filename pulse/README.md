@@ -46,6 +46,13 @@ npm run build              # grantees + static site
 3. Optional: add `OPENAI_API_KEY` only if using Vercel Cron for digest generation later.
 4. Update `data/digest-config.json` → `suggestEmail` with chapter contact.
 
+## Tracking and SEO
+
+- Website tracking is enabled via `@vercel/analytics` in `src/layouts/BaseLayout.astro`.
+- SEO metadata (canonical, Open Graph, Twitter, JSON-LD) is centralized in `BaseLayout`.
+- Sitemap generation is enabled through `@astrojs/sitemap` in `astro.config.mjs`.
+- Robots file is served from `src/pages/robots.txt.ts`.
+
 ## Governance
 
 - Do not publish emails or mentor availability from CSV.

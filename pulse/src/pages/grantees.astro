@@ -7,26 +7,9 @@ import { loadGrantees, loadStats } from '../lib/stats';
 const all = loadGrantees();
 const stats = loadStats();
 
-const q = (Astro.url.searchParams.get('q') ?? '').toLowerCase();
-const year = Astro.url.searchParams.get('year');
-const country = Astro.url.searchParams.get('country') ?? '';
-const field = Astro.url.searchParams.get('field') ?? '';
-
 const countries = [...new Set(all.map((g) => g.country))].sort();
 const fields = [...new Set(all.map((g) => g.fieldOfStudy))].sort();
 const years = [...new Set(all.map((g) => g.year))].sort((a, b) => b - a);
-
-const filtered = all.filter((g) => {
-  if (year && g.year !== parseInt(year, 10)) return false;
-  if (country && g.country !== country) return false;
-  if (field && g.fieldOfStudy !== field) return false;
-  if (!q) return true;
-  const hay = [g.name, g.fieldOfStudy, g.country, g.appliedThrough, g.proposalSummary].join(' ').toLowerCase();
-  return hay.includes(q);
-});
-
-const limited = filtered.slice(0, 60);
-const truncated = filtered.length > 60;
 ---
 
 <BaseLayout title="Grantee Explorer" description="Browse Rhode Island Fulbright grantees by year, field, and country.">
@@ -38,23 +21,23 @@ const truncated = filtered.length > 60;
   <section class="mx-auto max-w-6xl px-4 py-10">
   {
     stats && (
-      <p class="mb-6 text-sm text-stone-600">
-        Showing {filtered.length} of {stats.totalGrantees} grantees ({stats.yearMin}–{stats.yearMax}).
+      <p id="grantee-count" class="mb-6 text-sm text-stone-600">
+        Use search or filters to view grantees ({stats.totalGrantees} total, {stats.yearMin}–{stats.yearMax}).
       </p>
     )
   }
 
-    <form method="get" class="grid gap-4 rounded-xl bg-white p-6 shadow-sm ring-1 ring-stone-200 sm:grid-cols-2 lg:grid-cols-5">
+    <form id="grantee-filter-form" class="grid gap-4 rounded-xl bg-white p-6 shadow-sm ring-1 ring-stone-200 sm:grid-cols-2 lg:grid-cols-5">
       <div>
         <label class="text-xs font-semibold text-stone-500" for="q">Search</label>
-        <input id="q" name="q" value={Astro.url.searchParams.get('q') ?? ''} class="mt-1 w-full rounded border border-stone-300 px-2 py-1.5 text-sm" />
+        <input id="q" name="q" class="mt-1 w-full rounded border border-stone-300 px-2 py-1.5 text-sm" />
       </div>
       <div>
         <label class="text-xs font-semibold text-stone-500" for="year">Year</label>
         <select id="year" name="year" class="mt-1 w-full rounded border border-stone-300 px-2 py-1.5 text-sm">
           <option value="">All</option>
           {years.map((y) => (
-            <option value={y} selected={year === String(y)}>{y}</option>
+            <option value={y}>{y}</option>
           ))}
         </select>
       </div>
@@ -63,7 +46,7 @@ const truncated = filtered.length > 60;
         <select id="country" name="country" class="mt-1 w-full rounded border border-stone-300 px-2 py-1.5 text-sm">
           <option value="">All</option>
           {countries.map((c) => (
-            <option value={c} selected={country === c}>{c}</option>
+            <option value={c}>{c}</option>
           ))}
         </select>
       </div>
@@ -72,28 +55,151 @@ const truncated = filtered.length > 60;
         <select id="field" name="field" class="mt-1 w-full rounded border border-stone-300 px-2 py-1.5 text-sm">
           <option value="">All</option>
           {fields.map((f) => (
-            <option value={f} selected={field === f}>{f}</option>
+            <option value={f}>{f}</option>
           ))}
         </select>
       </div>
       <div class="flex items-end lg:col-span-5">
-        <button type="submit" class="rounded-lg bg-ri-navy px-4 py-2 text-sm font-semibold text-white">Filter</button>
-        <a href="/grantees" class="ml-3 text-sm text-stone-600 underline">Reset</a>
+        <button type="submit" class="rounded-lg bg-ri-navy px-4 py-2 text-sm font-semibold text-white">Apply</button>
+        <button id="grantee-reset" type="button" class="ml-3 text-sm text-stone-600 underline">Reset</button>
       </div>
     </form>
 
-    {truncated && (
-      <p class="mt-4 text-sm text-amber-800">Showing first 60 results. Narrow filters to see more.</p>
-    )}
+    <div id="grantee-presets" class="mt-4">
+      <p class="text-xs font-semibold uppercase tracking-wide text-stone-500">Quick starts</p>
+      <div class="mt-2 flex flex-wrap gap-2">
+        <button type="button" class="preset rounded-full bg-stone-100 px-3 py-1 text-xs font-medium text-stone-700 hover:bg-stone-200" data-year="2025">2025 cohort</button>
+        <button type="button" class="preset rounded-full bg-stone-100 px-3 py-1 text-xs font-medium text-stone-700 hover:bg-stone-200" data-field="Public Health">Public Health</button>
+        <button type="button" class="preset rounded-full bg-stone-100 px-3 py-1 text-xs font-medium text-stone-700 hover:bg-stone-200" data-country="Spain">Spain</button>
+        <button type="button" class="preset rounded-full bg-stone-100 px-3 py-1 text-xs font-medium text-stone-700 hover:bg-stone-200" data-country="United Kingdom">United Kingdom</button>
+      </div>
+    </div>
 
-    <div class="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-      {limited.map((g) => (
-        <GranteeCard grantee={g} />
+    <div id="grantee-intro" class="mt-8 rounded-xl border border-dashed border-stone-300 bg-stone-50 p-6 text-center">
+      <h2 class="font-display text-xl font-bold text-ri-navy">Start with a filter</h2>
+      <p class="mt-2 text-sm text-stone-600">
+        To keep this explorer fast and readable, results appear after you apply at least one search or filter.
+      </p>
+    </div>
+
+    <div id="grantee-grid" class="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      {all.map((g) => (
+        <div
+          class="grantee-item"
+          data-year={String(g.year)}
+          data-country={g.country}
+          data-field={g.fieldOfStudy}
+          data-search={[g.name, g.fieldOfStudy, g.country, g.appliedThrough, g.proposalSummary].join(' ').toLowerCase()}
+        >
+          <GranteeCard grantee={g} />
+        </div>
       ))}
     </div>
 
-    {filtered.length === 0 && (
-      <p class="mt-8 text-center text-stone-600">No grantees match these filters.</p>
-    )}
+    <p id="grantee-empty" class="mt-8 hidden text-center text-stone-600">No grantees match these filters.</p>
   </section>
+  <script is:inline>
+    const form = document.querySelector('#grantee-filter-form');
+    const grid = document.querySelector('#grantee-grid');
+    const items = Array.from(document.querySelectorAll('.grantee-item'));
+    const countEl = document.querySelector('#grantee-count');
+    const emptyEl = document.querySelector('#grantee-empty');
+    const resetBtn = document.querySelector('#grantee-reset');
+    const introEl = document.querySelector('#grantee-intro');
+    const presetBtns = Array.from(document.querySelectorAll('.preset'));
+
+    const qInput = document.querySelector('#q');
+    const yearInput = document.querySelector('#year');
+    const countryInput = document.querySelector('#country');
+    const fieldInput = document.querySelector('#field');
+
+    const total = items.length;
+
+    function applyFilters() {
+      const q = (qInput.value || '').trim().toLowerCase();
+      const year = yearInput.value || '';
+      const country = countryInput.value || '';
+      const field = fieldInput.value || '';
+      const hasCriteria = Boolean(q || year || country || field);
+
+      if (!hasCriteria) {
+        for (const item of items) item.classList.add('hidden');
+        grid?.classList.add('hidden');
+        introEl?.classList.remove('hidden');
+        emptyEl?.classList.add('hidden');
+        if (countEl) countEl.textContent = `Use search or filters to view grantees (${total} total).`;
+        return;
+      }
+
+      let visible = 0;
+      grid?.classList.remove('hidden');
+      introEl?.classList.add('hidden');
+      for (const item of items) {
+        const matchYear = !year || item.dataset.year === year;
+        const matchCountry = !country || item.dataset.country === country;
+        const matchField = !field || item.dataset.field === field;
+        const matchQ = !q || (item.dataset.search || '').includes(q);
+        const show = matchYear && matchCountry && matchField && matchQ;
+        item.classList.toggle('hidden', !show);
+        if (show) visible += 1;
+      }
+
+      if (countEl) countEl.textContent = `Showing ${visible} of ${total} grantees.`;
+      if (emptyEl) emptyEl.classList.toggle('hidden', visible > 0);
+    }
+
+    function syncFromUrl() {
+      const params = new URLSearchParams(window.location.search);
+      qInput.value = params.get('q') || '';
+      yearInput.value = params.get('year') || '';
+      countryInput.value = params.get('country') || '';
+      fieldInput.value = params.get('field') || '';
+      applyFilters();
+    }
+
+    function syncToUrl() {
+      const params = new URLSearchParams();
+      if (qInput.value) params.set('q', qInput.value);
+      if (yearInput.value) params.set('year', yearInput.value);
+      if (countryInput.value) params.set('country', countryInput.value);
+      if (fieldInput.value) params.set('field', fieldInput.value);
+      const query = params.toString();
+      const nextUrl = query ? `/grantees?${query}` : '/grantees';
+      window.history.replaceState({}, '', nextUrl);
+    }
+
+    form?.addEventListener('submit', (event) => {
+      event.preventDefault();
+      applyFilters();
+      syncToUrl();
+    });
+
+    resetBtn?.addEventListener('click', () => {
+      qInput.value = '';
+      yearInput.value = '';
+      countryInput.value = '';
+      fieldInput.value = '';
+      applyFilters();
+      window.history.replaceState({}, '', '/grantees');
+    });
+
+    presetBtns.forEach((button) => {
+      button.addEventListener('click', () => {
+        const yearPreset = button.dataset.year || '';
+        const countryPreset = button.dataset.country || '';
+        const fieldPreset = button.dataset.field || '';
+        const queryPreset = button.dataset.q || '';
+
+        if (yearPreset) yearInput.value = yearPreset;
+        if (countryPreset) countryInput.value = countryPreset;
+        if (fieldPreset) fieldInput.value = fieldPreset;
+        if (queryPreset) qInput.value = queryPreset;
+
+        applyFilters();
+        syncToUrl();
+      });
+    });
+
+    syncFromUrl();
+  </script>
 </BaseLayout>

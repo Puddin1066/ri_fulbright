@@ -3,6 +3,7 @@ import '../styles/global.css';
 import SiteHeader from '../components/SiteHeader.astro';
 import SiteFooter from '../components/SiteFooter.astro';
 import { siteConfig } from '../lib/data';
+import Analytics from '@vercel/analytics/astro';
 
 interface Props {
   title: string;
@@ -11,6 +12,21 @@ interface Props {
 
 const { title, description = 'Opportunity Atlas, grantee explorer, and digest for Rhode Island Fulbrighters.' } = Astro.props;
 const fullTitle = title === siteConfig.siteName ? title : `${title} · ${siteConfig.siteName}`;
+const canonical = new URL(Astro.url.pathname, Astro.site).toString();
+const ogImage = new URL('/favicon.svg', Astro.site).toString();
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: siteConfig.siteName,
+  url: Astro.site?.toString(),
+  description,
+  inLanguage: 'en-US',
+  publisher: {
+    '@type': 'Organization',
+    name: siteConfig.siteName,
+    url: Astro.site?.toString(),
+  },
+};
 ---
 
 <!doctype html>
@@ -19,6 +35,18 @@ const fullTitle = title === siteConfig.siteName ? title : `${title} · ${siteCon
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href={canonical} />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={siteConfig.siteName} />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content={fullTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -26,6 +54,7 @@ const fullTitle = title === siteConfig.siteName ? title : `${title} · ${siteCon
       href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Source+Sans+3:wght@400;600;700&display=swap"
       rel="stylesheet"
     />
+    <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
     <title>{fullTitle}</title>
   </head>
   <body class="flex min-h-screen flex-col">
@@ -34,5 +63,6 @@ const fullTitle = title === siteConfig.siteName ? title : `${title} · ${siteCon
       <slot />
     </main>
     <SiteFooter />
+    <Analytics />
   </body>
 </html>
