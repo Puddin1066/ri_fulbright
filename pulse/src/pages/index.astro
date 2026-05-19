@@ -1,0 +1,110 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import OpportunityCard from '../components/OpportunityCard.astro';
+import { allOpportunities, allEvents, siteConfig, sortEventsUpcoming } from '../lib/data';
+import { getCollection } from 'astro:content';
+import { loadStats } from '../lib/stats';
+
+const stats = loadStats();
+
+const digests = await getCollection('digest', ({ data }) => !data.draft);
+digests.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+const latestDigest = digests[0];
+const upcoming = sortEventsUpcoming(allEvents).filter((e) => e.startDate >= new Date().toISOString().slice(0, 10)).slice(0, 3);
+const featured = allOpportunities.slice(0, 3);
+---
+
+<BaseLayout title={siteConfig.siteName}>
+  <Hero
+    title="Rhode Island Fulbright, in one place"
+    subtitle="Opportunity Atlas, grantee history, events, and digest—the public companion to the official RI chapter site."
+  >
+    <div class="mt-8 flex flex-wrap gap-3">
+      <a href="/atlas" class="rounded-lg bg-ri-gold px-5 py-2.5 text-sm font-bold text-ri-navy hover:bg-ri-gold/90">Explore Atlas</a>
+      <a href="/grantees" class="rounded-lg border border-white/40 px-5 py-2.5 text-sm font-semibold hover:bg-white/10">Browse grantees</a>
+    </div>
+  </Hero>
+
+  {
+    stats && (
+      <section class="mx-auto max-w-6xl px-4 py-12">
+        <h2 class="font-display text-2xl font-bold text-ri-navy">Impact at a glance</h2>
+        <div class="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          <div class="rounded-xl bg-white p-6 shadow-sm ring-1 ring-stone-200">
+            <p class="text-3xl font-bold text-ri-navy">{stats.totalGrantees}</p>
+            <p class="text-sm text-stone-600">Rhode Island grantees in our dataset</p>
+          </div>
+          <div class="rounded-xl bg-white p-6 shadow-sm ring-1 ring-stone-200">
+            <p class="text-3xl font-bold text-ri-navy">{stats.yearMin}–{stats.yearMax}</p>
+            <p class="text-sm text-stone-600">Years of grants represented</p>
+          </div>
+          <div class="rounded-xl bg-white p-6 shadow-sm ring-1 ring-stone-200 lg:col-span-2">
+            <p class="text-sm font-semibold text-stone-500">Top destination countries</p>
+            <p class="mt-2 text-sm text-stone-700">
+              {stats.topCountries.slice(0, 5).map((c) => `${c.name} (${c.count})`).join(' · ')}
+            </p>
+          </div>
+        </div>
+      </section>
+    )
+  }
+
+  <section class="border-t border-stone-200 bg-white py-12">
+    <div class="mx-auto max-w-6xl px-4">
+      <div class="flex items-end justify-between gap-4">
+        <h2 class="font-display text-2xl font-bold text-ri-navy">Latest digest</h2>
+        <a href="/digest" class="text-sm font-semibold text-ri-navy underline">All issues</a>
+      </div>
+      {
+        latestDigest ? (
+          <a href={`/digest/${latestDigest.id}`} class="mt-4 block rounded-xl border border-stone-200 p-6 hover:border-ri-gold">
+            <p class="text-sm text-stone-500">{latestDigest.data.pubDate.toLocaleDateString('en-US', { dateStyle: 'long' })}</p>
+            <h3 class="mt-1 font-display text-xl font-bold text-ri-navy">{latestDigest.data.title}</h3>
+            <p class="mt-2 text-stone-600">{latestDigest.data.description}</p>
+          </a>
+        ) : (
+          <p class="mt-4 text-stone-600">No digest issues yet.</p>
+        )
+      }
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-6xl px-4 py-12">
+    <h2 class="font-display text-2xl font-bold text-ri-navy">Upcoming events</h2>
+    {
+      upcoming.length === 0 ? (
+        <p class="mt-4 text-stone-600">
+          No upcoming events in our feed. Check the{' '}
+          <a class="font-semibold text-ri-navy underline" href="https://rhodeisland.fulbrightchapters.org/calendar/">chapter calendar</a>.
+        </p>
+      ) : (
+        <ul class="mt-6 space-y-4">
+          {upcoming.map((ev) => (
+            <li class="rounded-xl border border-stone-200 bg-white p-5">
+              <p class="text-sm font-medium text-ri-gold">{ev.startDate}</p>
+              <h3 class="font-semibold text-ri-navy">{ev.title}</h3>
+              <p class="mt-1 text-sm text-stone-600">{ev.location}</p>
+              <a href={ev.url} class="mt-2 inline-block text-sm font-semibold text-ri-navy underline" target="_blank" rel="noopener">
+                Details →
+              </a>
+            </li>
+          ))}
+        </ul>
+      )
+    }
+    <a href="/events" class="mt-4 inline-block text-sm font-semibold text-ri-navy underline">View all events</a>
+  </section>
+
+  <section class="border-t border-stone-200 bg-stone-100 py-12">
+    <div class="mx-auto max-w-6xl px-4">
+      <h2 class="font-display text-2xl font-bold text-ri-navy">Featured resources</h2>
+      <div class="mt-6 grid gap-6 md:grid-cols-3">
+        {featured.map((item) => (
+          <OpportunityCard item={item} />
+        ))}
+      </div>
+      <a href="/atlas" class="mt-6 inline-block font-semibold text-ri-navy underline">View full Atlas →</a>
+    </div>
+  </section>
+</BaseLayout>

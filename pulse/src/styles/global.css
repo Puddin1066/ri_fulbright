@@ -1,0 +1,16 @@
+@import 'tailwindcss';
+
+@theme {
+  --color-ri-navy: #002147;
+  --color-ri-gold: #c4a35a;
+  --font-sans: 'Source Sans 3', system-ui, sans-serif;
+  --font-display: 'Libre Baskerville', Georgia, serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-stone-50 text-stone-900 antialiased;
+}

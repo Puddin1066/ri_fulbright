@@ -1,0 +1,27 @@
+{
+  "name": "ri-fulbright-pulse",
+  "type": "module",
+  "version": "1.0.0",
+  "private": true,
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "scripts": {
+    "dev": "npm run data:grantees && astro dev",
+    "data:grantees": "node scripts/build-grantees.mjs",
+    "generate:digest": "node scripts/generate-digest.mjs",
+    "generate:digest:dry": "node scripts/generate-digest.mjs --dry-run",
+    "prebuild": "npm run data:grantees",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@ai-sdk/openai": "^3.0.64",
+    "@tailwindcss/vite": "^4.3.0",
+    "ai": "^6.0.185",
+    "astro": "^6.3.5",
+    "tailwindcss": "^4.3.0",
+    "zod": "^4.4.3"
+  }
+}

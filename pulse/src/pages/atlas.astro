@@ -1,0 +1,73 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import OpportunityCard from '../components/OpportunityCard.astro';
+import { ALL_TAGS, filterOpportunities, siteConfig } from '../lib/data';
+
+const q = Astro.url.searchParams.get('q') ?? '';
+const tag = Astro.url.searchParams.get('tag');
+const results = filterOpportunities(q, tag);
+
+const suggestSubject = encodeURIComponent('RI Fulbright Pulse — Suggest an addition');
+const suggestBody = encodeURIComponent('Name:\nURL:\nCategory:\nDescription:\n');
+const mailto = `mailto:${siteConfig.suggestEmail}?subject=${suggestSubject}&body=${suggestBody}`;
+---
+
+<BaseLayout title="Opportunity Atlas" description="Searchable Rhode Island Fulbright resources and links.">
+  <Hero title="Opportunity Atlas" subtitle="Verified public links for advising, chapters, events, and international programs." />
+
+  <section class="mx-auto max-w-6xl px-4 py-10" id="suggest">
+    <form method="get" class="rounded-xl bg-white p-6 shadow-sm ring-1 ring-stone-200">
+      <label class="block text-sm font-semibold text-stone-700" for="q">Search</label>
+      <input
+        id="q"
+        name="q"
+        type="search"
+        value={q}
+        placeholder="Mentorship, Brown, events…"
+        class="mt-1 w-full rounded-lg border border-stone-300 px-3 py-2 text-stone-900 focus:border-ri-navy focus:outline-none focus:ring-2 focus:ring-ri-navy/20"
+      />
+      <fieldset class="mt-4">
+        <legend class="text-sm font-semibold text-stone-700">Category</legend>
+        <div class="mt-2 flex flex-wrap gap-2">
+          <a
+            href={`/atlas${q ? `?q=${encodeURIComponent(q)}` : ''}`}
+            class:list={[
+              'rounded-full px-3 py-1 text-sm font-medium',
+              !tag ? 'bg-ri-navy text-white' : 'bg-stone-100 text-stone-700 hover:bg-stone-200',
+            ]}
+          >All</a>
+          {
+            ALL_TAGS.map((t) => (
+              <a
+                href={`/atlas?tag=${encodeURIComponent(t)}${q ? `&q=${encodeURIComponent(q)}` : ''}`}
+                class:list={[
+                  'rounded-full px-3 py-1 text-sm font-medium',
+                  tag === t ? 'bg-ri-navy text-white' : 'bg-stone-100 text-stone-700 hover:bg-stone-200',
+                ]}
+              >
+                {t}
+              </a>
+            ))
+          }
+        </div>
+      </fieldset>
+      <button type="submit" class="mt-4 rounded-lg bg-ri-navy px-4 py-2 text-sm font-semibold text-white hover:bg-ri-navy/90">
+        Apply filters
+      </button>
+    </form>
+
+    <p class="mt-6 text-sm text-stone-600">{results.length} resource{results.length === 1 ? '' : 's'}</p>
+    <div class="mt-6 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+      {results.map((item) => (
+        <OpportunityCard item={item} />
+      ))}
+    </div>
+
+    <div class="mt-12 rounded-xl border border-dashed border-ri-gold bg-ri-gold/10 p-6 text-center">
+      <h2 class="font-display text-lg font-bold text-ri-navy">Missing something?</h2>
+      <p class="mt-2 text-sm text-stone-600">Suggest a resource for chapter review.</p>
+      <a href={mailto} class="mt-4 inline-block rounded-lg bg-ri-navy px-5 py-2 text-sm font-semibold text-white">Suggest an addition</a>
+    </div>
+  </section>
+</BaseLayout>

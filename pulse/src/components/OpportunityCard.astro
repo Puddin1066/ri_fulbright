@@ -1,0 +1,31 @@
+---
+import type { Opportunity } from '../lib/types';
+
+interface Props {
+  item: Opportunity;
+}
+
+const { item } = Astro.props;
+---
+
+<article class="flex flex-col rounded-xl border border-stone-200 bg-white p-5 shadow-sm transition hover:border-ri-gold/50 hover:shadow-md">
+  <div class="mb-2 flex flex-wrap gap-1.5">
+    {item.tags.map((tag) => (
+      <span class="rounded-full bg-stone-100 px-2 py-0.5 text-xs font-medium text-stone-700">{tag}</span>
+    ))}
+  </div>
+  <h3 class="font-display text-lg font-bold text-ri-navy">{item.name}</h3>
+  <p class="mt-2 flex-1 text-sm text-stone-600">{item.description}</p>
+  <p class="mt-2 text-xs text-stone-500">
+    <span class="font-semibold">Audience:</span> {item.audience.join(', ')}
+  </p>
+  <p class="mt-1 text-xs text-stone-400">Verified {item.lastVerified}</p>
+  <a
+    href={item.actionUrl}
+    target="_blank"
+    rel="noopener noreferrer"
+    class="mt-4 inline-flex items-center justify-center rounded-lg bg-ri-navy px-4 py-2 text-sm font-semibold text-white hover:bg-ri-navy/90"
+  >
+    {item.actionLabel} →
+  </a>
+</article>

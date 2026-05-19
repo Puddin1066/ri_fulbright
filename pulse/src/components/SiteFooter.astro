@@ -1,0 +1,43 @@
+---
+import { siteConfig } from '../lib/data';
+
+const suggestSubject = encodeURIComponent('RI Fulbright Pulse — Suggest an addition');
+const suggestBody = encodeURIComponent(
+  'Please add the following resource to the Opportunity Atlas:\n\nName:\nURL:\nCategory:\nDescription:\n',
+);
+const mailto = `mailto:${siteConfig.suggestEmail}?subject=${suggestSubject}&body=${suggestBody}`;
+---
+
+<footer class="mt-auto border-t border-stone-200 bg-ri-navy text-stone-100">
+  <div class="mx-auto max-w-6xl px-4 py-10">
+    <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+      <div>
+        <p class="font-display text-lg font-bold text-ri-gold">RI Fulbright Pulse</p>
+        <p class="mt-2 text-sm text-stone-300">
+          Public companion to the Rhode Island chapter—not a replacement for membership services.
+        </p>
+      </div>
+      <div>
+        <p class="text-sm font-semibold uppercase tracking-wide text-stone-400">Official chapter</p>
+        <ul class="mt-2 space-y-1 text-sm">
+          <li>
+            <a class="underline hover:text-white" href={siteConfig.officialSiteUrl}>Chapter website</a>
+          </li>
+          <li>
+            <a class="underline hover:text-white" href={siteConfig.fulbrightMembershipUrl}>Join / renew membership</a>
+          </li>
+        </ul>
+      </div>
+      <div>
+        <p class="text-sm font-semibold uppercase tracking-wide text-stone-400">Contribute</p>
+        <a href={mailto} class="mt-2 inline-block text-sm font-semibold text-ri-gold underline hover:text-white">
+          Suggest an addition
+        </a>
+      </div>
+    </div>
+    <p class="mt-8 border-t border-stone-700 pt-6 text-xs text-stone-500">
+      Grantee data derived from public Fulbright grant listings. © {new Date().getFullYear()} Community-maintained
+      project.
+    </p>
+  </div>
+</footer>

@@ -1,0 +1,15 @@
+{
+  "officialSiteUrl": "https://rhodeisland.fulbrightchapters.org/",
+  "fulbrightMembershipUrl": "https://fulbright.org/membership/",
+  "suggestEmail": "info@fulbright.org",
+  "siteName": "RI Fulbright Pulse",
+  "spotlightGranteeIds": [],
+  "spotlightMinYear": 2020,
+  "includeOpportunityTags": [
+    "Applicant Mentorship",
+    "Public Events",
+    "Alumni Networking"
+  ],
+  "maxSpotlights": 3,
+  "maxEventsInDigest": 5
+}

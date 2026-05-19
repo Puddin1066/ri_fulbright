@@ -1,0 +1,35 @@
+---
+const nav = [
+  { href: '/', label: 'Home' },
+  { href: '/atlas', label: 'Atlas' },
+  { href: '/grantees', label: 'Grantees' },
+  { href: '/events', label: 'Events' },
+  { href: '/digest', label: 'Digest' },
+];
+const path = Astro.url.pathname;
+---
+
+<header class="border-b border-stone-200 bg-white/90 backdrop-blur sticky top-0 z-50">
+  <div class="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-4">
+    <a href="/" class="font-display text-lg font-bold text-ri-navy sm:text-xl">
+      RI Fulbright <span class="text-ri-gold">Pulse</span>
+    </a>
+    <nav class="flex flex-wrap justify-end gap-1 text-sm font-semibold sm:gap-2" aria-label="Main">
+      {
+        nav.map((item) => (
+          <a
+            href={item.href}
+            class:list={[
+              'rounded-md px-2 py-1.5 transition-colors sm:px-3',
+              path === item.href || (item.href !== '/' && path.startsWith(item.href))
+                ? 'bg-ri-navy text-white'
+                : 'text-stone-700 hover:bg-stone-100',
+            ]}
+          >
+            {item.label}
+          </a>
+        ))
+      }
+    </nav>
+  </div>
+</header>

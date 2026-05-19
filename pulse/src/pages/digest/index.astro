@@ -1,0 +1,31 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Hero from '../../components/Hero.astro';
+import { getCollection } from 'astro:content';
+
+const posts = await getCollection('digest', ({ data }) => !data.draft);
+posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+---
+
+<BaseLayout title="Digest" description="RI Fulbright Pulse newsletter archive.">
+  <Hero title="Digest" subtitle="Campaign-ready updates on opportunities, events, and Rhode Island Fulbright impact." />
+
+  <section class="mx-auto max-w-3xl px-4 py-10">
+    <ul class="divide-y divide-stone-200">
+      {
+        posts.map((post) => (
+          <li class="py-6">
+            <a href={`/digest/${post.id}`} class="group block">
+              <time class="text-sm text-stone-500" datetime={post.data.pubDate.toISOString()}>
+                {post.data.pubDate.toLocaleDateString('en-US', { dateStyle: 'long' })}
+              </time>
+              <h2 class="mt-1 font-display text-xl font-bold text-ri-navy group-hover:text-ri-gold">{post.data.title}</h2>
+              <p class="mt-2 text-stone-600">{post.data.description}</p>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+    {posts.length === 0 && <p class="text-stone-600">No digest issues published yet.</p>}
+  </section>
+</BaseLayout>

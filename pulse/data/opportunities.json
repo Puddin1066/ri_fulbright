@@ -1,0 +1,212 @@
+[
+  {
+    "id": "brown-fulbright-us-student",
+    "name": "Brown University — Fulbright U.S. Student Program",
+    "description": "Campus advising for graduating seniors and alumni: timelines, open hours, and application support through the Fellowships office.",
+    "tags": ["Universities", "Applicant Mentorship"],
+    "audience": ["Applicants", "Alumni"],
+    "actionLabel": "View program & deadlines",
+    "actionUrl": "https://fellowships.brown.edu/fellowships/fulbright-us-student-program",
+    "lastVerified": "2026-05-19"
+  },
+  {
+    "id": "uri-fulbright-applicants",
+    "name": "URI — Fulbright for students & recent alumni",
+    "description": "Office of Fellowships @ URI: adviser meetings, drafts, campus deadline (typically mid-August), and national deadline guidance.",
+    "tags": ["Universities", "Applicant Mentorship"],
+    "audience": ["Applicants"],
+    "actionLabel": "Applicant resources",
+    "actionUrl": "https://web.uri.edu/fulbright/applicants/students-recent-alumni/",
+    "lastVerified": "2026-05-19"
+  },
+  {
+    "id": "uri-fulbright-advisory-team",
+    "name": "URI — Fulbright Advisory Team",
+    "description": "Faculty and campus contacts supporting Fulbright applicants across disciplines.",
+    "tags": ["Universities", "Applicant Mentorship"],
+    "audience": ["Applicants"],
+    "actionLabel": "Meet the advisory team",
+    "actionUrl": "https://web.uri.edu/fulbright/contact/fulbright-advisory-team/",
+    "lastVerified": "2026-05-19"
+  },
+  {
+    "id": "uri-host-fulbright-scholar",
+    "name": "URI — Hosting a Fulbright visiting scholar",
+    "description": "For URI faculty: host short-term or semester/year scholars; supports campus internationalization.",
+    "tags": ["Universities", "International Visitors"],
+    "audience": ["Community Partners", "Alumni"],
+    "actionLabel": "Hosting information",
+    "actionUrl": "https://web.uri.edu/fulbright/hosting-a-fulbright-recipient/",
+    "lastVerified": "2026-05-19"
+  },
+  {
+    "id": "risd-fulbright-career-center",
+    "name": "RISD — Fulbright (Career Center)",
+    "description": "Fulbright U.S. Student guidance for RISD students and recent alumni: eligibility, internal deadlines, and advising.",
+    "tags": ["Universities", "Applicant Mentorship"],
+    "audience": ["Applicants"],
+    "actionLabel": "RISD Fulbright hub",
+    "actionUrl": "https://careercenter.risd.edu/fulbright",
+    "lastVerified": "2026-05-19"
+  },
+  {
+    "id": "risd-fulbright-program-site",
+    "name": "RISD Fulbright U.S. Student Program",
+    "description": "Program overview and contact path for RISD's Fulbright application process.",
+    "tags": ["Universities", "Applicant Mentorship"],
+    "audience": ["Applicants"],
+    "actionLabel": "Program site",
+    "actionUrl": "http://www.risdfulbright.com/",
+    "lastVerified": "2026-05-19"
+  },
+  {
+    "id": "providence-college-fellowships",
+    "name": "Providence College — Fellowships & scholarships",
+    "description": "Center for Engaged Learning: Fulbright and other national fellowships for students and recent alumni.",
+    "tags": ["Universities", "Applicant Mentorship"],
+    "audience": ["Applicants"],
+    "actionLabel": "Fellowships at PC",
+    "actionUrl": "https://engaged-learning.providence.edu/fellowships-and-scholarships/",
+    "lastVerified": "2026-05-19"
+  },
+  {
+    "id": "salve-global-education-fellowships",
+    "name": "Salve Regina — Center for Global Education & Fellowships",
+    "description": "Nationally competitive fellowships including Fulbright; Salve is a top Fulbright producer among master's institutions.",
+    "tags": ["Universities", "Applicant Mentorship"],
+    "audience": ["Applicants", "Alumni"],
+    "actionLabel": "Center for Global Education",
+    "actionUrl": "https://salve.edu/our-mission/campus-offices-and-services/center-global-education-and-fellowships",
+    "lastVerified": "2026-05-19"
+  },
+  {
+    "id": "ric-fulbright-institution",
+    "name": "Rhode Island College — Fulbright (institution profile)",
+    "description": "RIC participation in the Fulbright ecosystem; connect via campus study-abroad and fellowship resources.",
+    "tags": ["Universities", "Applicant Mentorship"],
+    "audience": ["Applicants"],
+    "actionLabel": "RIC institution profile",
+    "actionUrl": "https://fulbrightscholars.org/institution/rhode-island-college",
+    "lastVerified": "2026-05-19"
+  },
+  {
+    "id": "ric-study-abroad-funding",
+    "name": "RIC — Study abroad & funding sources",
+    "description": "Office of Study Abroad funding overview; starting point for international programs including Fulbright.",
+    "tags": ["Universities", "Applicant Mentorship"],
+    "audience": ["Applicants"],
+    "actionLabel": "Funding sources",
+    "actionUrl": "https://our.ric.edu/department-directory/office-study-abroad/Study-Abroad-Funding-Sources",
+    "lastVerified": "2026-05-19"
+  },
+  {
+    "id": "iie-fulbright-us-student",
+    "name": "Fulbright U.S. Student Program (official)",
+    "description": "National program overview, country listings, eligibility, and application system for U.S. citizens.",
+    "tags": ["Applicant Mentorship"],
+    "audience": ["Applicants"],
+    "actionLabel": "Explore awards",
+    "actionUrl": "https://us.fulbrightonline.org/",
+    "lastVerified": "2026-05-19"
+  },
+  {
+    "id": "iie-fulbright-adviser-search",
+    "name": "Find a Fulbright Program Adviser (national search)",
+    "description": "Locate campus Fulbright advisers by institution—useful if you applied through an out-of-state campus but list Rhode Island as home.",
+    "tags": ["Applicant Mentorship"],
+    "audience": ["Applicants"],
+    "actionLabel": "Search advisers",
+    "actionUrl": "https://us.fulbrightonline.org/fulbright-program-advisers/search-for-a-fulbright-program-adviser",
+    "lastVerified": "2026-05-19"
+  },
+  {
+    "id": "fulbright-visiting-scholar",
+    "name": "Fulbright Visiting Scholar Program (U.S. hosts)",
+    "description": "U.S. Department of State overview for departments hosting international scholars.",
+    "tags": ["International Visitors", "Universities"],
+    "audience": ["Community Partners"],
+    "actionLabel": "Program overview",
+    "actionUrl": "https://exchanges.state.gov/non-us/program/fulbright-visiting-scholar-program",
+    "lastVerified": "2026-05-19"
+  },
+  {
+    "id": "ri-chapter-official",
+    "name": "Rhode Island Chapter — Fulbright Association (official)",
+    "description": "Official chapter home: about, calendar links, membership join/renew, and contact.",
+    "tags": ["Alumni Networking"],
+    "audience": ["Alumni", "Applicants", "Community Partners"],
+    "actionLabel": "Visit chapter site",
+    "actionUrl": "https://rhodeisland.fulbrightchapters.org/",
+    "lastVerified": "2026-05-19"
+  },
+  {
+    "id": "ri-chapter-calendar",
+    "name": "Rhode Island Chapter — Calendar",
+    "description": "Chapter and national calendar links; check for upcoming RI programming.",
+    "tags": ["Public Events", "Alumni Networking"],
+    "audience": ["Alumni", "Applicants"],
+    "actionLabel": "Open calendar",
+    "actionUrl": "https://rhodeisland.fulbrightchapters.org/calendar/",
+    "lastVerified": "2026-05-19"
+  },
+  {
+    "id": "fulbright-association-join",
+    "name": "Join the Fulbright Association",
+    "description": "National membership for alumni and friends; path for chapter engagement beyond public resources.",
+    "tags": ["Alumni Networking"],
+    "audience": ["Alumni"],
+    "actionLabel": "Join / renew",
+    "actionUrl": "https://fulbright.org/membership/",
+    "lastVerified": "2026-05-19"
+  },
+  {
+    "id": "fulbright-org-events",
+    "name": "Fulbright Association — Events",
+    "description": "Searchable event feed including New England and chapter programs.",
+    "tags": ["Public Events", "Alumni Networking"],
+    "audience": ["Alumni", "Applicants"],
+    "actionLabel": "Browse events",
+    "actionUrl": "https://fulbright.org/events/",
+    "lastVerified": "2026-05-19"
+  },
+  {
+    "id": "international-house-ri",
+    "name": "International House of Rhode Island",
+    "description": "Providence hub for international visitors and community; Fulbright Association location listing.",
+    "tags": ["Cultural Institutions", "International Visitors"],
+    "audience": ["Community Partners", "Alumni"],
+    "actionLabel": "Location & events",
+    "actionUrl": "https://fulbright.org/locations/international-house-of-rhode-island/",
+    "lastVerified": "2026-05-19"
+  },
+  {
+    "id": "massachusetts-chapter",
+    "name": "Massachusetts Chapter — Fulbright Association",
+    "description": "Regional neighbor chapter: events and networking for New England Fulbrighters.",
+    "tags": ["Alumni Networking", "Public Events"],
+    "audience": ["Alumni"],
+    "actionLabel": "MA chapter site",
+    "actionUrl": "https://massachusetts.fulbrightchapters.org/",
+    "lastVerified": "2026-05-19"
+  },
+  {
+    "id": "maine-chapter-events",
+    "name": "Maine Chapter — Events & stories",
+    "description": "Regional programming and grantee stories for New England alumni.",
+    "tags": ["Alumni Networking", "Public Events"],
+    "audience": ["Alumni"],
+    "actionLabel": "Maine chapter events",
+    "actionUrl": "https://maine.fulbrightchapters.org/chapter-events/",
+    "lastVerified": "2026-05-19"
+  },
+  {
+    "id": "new-hampshire-chapter-calendar",
+    "name": "New Hampshire Chapter — Calendar",
+    "description": "New England chapter calendar for cross-border events.",
+    "tags": ["Public Events", "Alumni Networking"],
+    "audience": ["Alumni"],
+    "actionLabel": "NH calendar",
+    "actionUrl": "https://newhampshire.fulbrightchapters.org/calendar/",
+    "lastVerified": "2026-05-19"
+  }
+]
