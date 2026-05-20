@@ -32,6 +32,15 @@ export interface Grantee {
   fieldOfStudy: string;
   country: string;
   proposalSummary: string;
+  suggestedPathways?: GranteePathway[];
+}
+
+export interface GranteePathway {
+  id: string;
+  name: string;
+  actionUrl: string;
+  confidence: 'high' | 'medium' | 'low';
+  reasons: string[];
 }
 
 export interface GranteeStats {

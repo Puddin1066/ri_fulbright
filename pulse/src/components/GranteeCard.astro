@@ -35,4 +35,23 @@ const { grantee } = Astro.props;
       </p>
     )
   }
+  {
+    grantee.suggestedPathways && grantee.suggestedPathways.length > 0 && (
+      <div class="mt-3 border-t border-stone-100 pt-3">
+        <p class="text-xs font-semibold uppercase tracking-wide text-stone-500">Suggested RI pathways</p>
+        <ul class="mt-2 space-y-2">
+          {grantee.suggestedPathways.map((pathway) => (
+            <li class="rounded-lg bg-stone-50 px-2.5 py-2">
+              <a class="text-sm font-semibold text-ri-navy underline" href={pathway.actionUrl} target="_blank" rel="noopener">
+                {pathway.name}
+              </a>
+              <p class="mt-0.5 text-xs text-stone-600">
+                {pathway.confidence} confidence · {pathway.reasons[0]}
+              </p>
+            </li>
+          ))}
+        </ul>
+      </div>
+    )
+  }
 </article>

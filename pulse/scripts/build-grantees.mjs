@@ -64,8 +64,163 @@ function topN(counter, n = 10) {
 
 const csvPath = join(dataDir, 'grantees.csv');
 const optOutPath = join(dataDir, 'grantees-opt-out.json');
+const opportunitiesPath = join(dataDir, 'opportunities.json');
 const csv = readFileSync(csvPath, 'utf-8');
 const optOut = new Set(JSON.parse(readFileSync(optOutPath, 'utf-8')));
+const opportunities = JSON.parse(readFileSync(opportunitiesPath, 'utf-8'));
+
+const pathwayInstitutionIds = new Set([
+  'ri-hospital',
+  'lifespan-health-system',
+  'brown-medicine',
+  'ri-bio',
+  'ri-life-science-hub',
+  'nemic',
+  'ocean-state-labs',
+  'uri-sea-grant',
+  'uri-coastal-institute',
+  'ri-climate-office',
+  'pell-center',
+  'brown-rhodes-center',
+  'ri-commerce',
+  'risca',
+  'risd-museum',
+]);
+
+const pathwayInstitutions = opportunities
+  .filter((opportunity) => pathwayInstitutionIds.has(opportunity.id))
+  .reduce((acc, opportunity) => {
+    acc[opportunity.id] = opportunity;
+    return acc;
+  }, {});
+
+const institutionAliasToId = {
+  brown: 'brown-fulbright-us-student',
+  'brown university': 'brown-fulbright-us-student',
+  'brown university - us fulbright graduate adviser': 'brown-fulbright-us-student',
+  'university of rhode island': 'uri-fulbright-applicants',
+  'uri ': 'uri-fulbright-applicants',
+  risd: 'risd-fulbright-career-center',
+  'rhode island school of design': 'risd-fulbright-career-center',
+  'providence college': 'providence-college-fellowships',
+  'salve regina': 'salve-global-education-fellowships',
+  'rhode island college': 'ric-fulbright-institution',
+};
+
+const domainRules = [
+  {
+    key: 'healthcare',
+    label: 'Healthcare and public health',
+    keywords: [
+      'public health',
+      'health',
+      'medicine',
+      'medical',
+      'clinical',
+      'nursing',
+      'epidemiology',
+      'hospital',
+      'biomedical',
+      'health policy',
+    ],
+    institutionIds: ['ri-hospital', 'lifespan-health-system', 'brown-medicine', 'ri-bio', 'nemic'],
+  },
+  {
+    key: 'life-sciences',
+    label: 'Life sciences and medtech',
+    keywords: ['biology', 'biotech', 'medtech', 'life science', 'genetics', 'laboratory', 'pharmaceutical'],
+    institutionIds: ['ri-life-science-hub', 'ri-bio', 'ocean-state-labs', 'nemic'],
+  },
+  {
+    key: 'ocean-climate',
+    label: 'Ocean and climate',
+    keywords: ['ocean', 'coastal', 'climate', 'marine', 'fisher', 'renewable energy', 'environment'],
+    institutionIds: ['uri-sea-grant', 'uri-coastal-institute', 'ri-climate-office'],
+  },
+  {
+    key: 'policy-econ',
+    label: 'Policy and economics',
+    keywords: ['policy', 'economics', 'finance', 'governance', 'public affairs', 'development', 'democracy'],
+    institutionIds: ['pell-center', 'brown-rhodes-center', 'ri-commerce'],
+  },
+  {
+    key: 'arts-culture',
+    label: 'Arts and culture',
+    keywords: ['art', 'design', 'museum', 'culture', 'humanities', 'creative', 'architecture'],
+    institutionIds: ['risca', 'risd-museum'],
+  },
+];
+
+function tokenize(value) {
+  return normalizeWhitespace(value).toLowerCase();
+}
+
+function getInstitutionPathway(id, reason, score) {
+  const institution = pathwayInstitutions[id];
+  if (!institution) return null;
+  return {
+    id: institution.id,
+    name: institution.name,
+    actionUrl: institution.actionUrl,
+    confidence: score >= 90 ? 'high' : score >= 60 ? 'medium' : 'low',
+    score,
+    reasons: [reason],
+  };
+}
+
+function addPathwayCandidate(candidates, candidate) {
+  if (!candidate) return;
+  const existing = candidates.get(candidate.id);
+  if (!existing) {
+    candidates.set(candidate.id, candidate);
+    return;
+  }
+  if (candidate.score > existing.score) {
+    existing.score = candidate.score;
+    existing.confidence = candidate.confidence;
+  }
+  if (!existing.reasons.includes(candidate.reasons[0])) {
+    existing.reasons.push(candidate.reasons[0]);
+  }
+}
+
+function buildSuggestedPathways(normalized) {
+  const candidates = new Map();
+  const appliedThrough = tokenize(normalized.appliedThrough);
+  const field = tokenize(normalized.fieldOfStudy);
+  const summary = tokenize(normalized.proposalSummary);
+
+  for (const [alias, id] of Object.entries(institutionAliasToId)) {
+    if (appliedThrough.includes(alias)) {
+      addPathwayCandidate(candidates, getInstitutionPathway(id, `Applied-through match (${alias})`, 95));
+    }
+  }
+
+  for (const rule of domainRules) {
+    const fieldMatches = rule.keywords.filter((keyword) => field.includes(keyword));
+    const summaryMatches = rule.keywords.filter((keyword) => summary.includes(keyword));
+    if (fieldMatches.length === 0 && summaryMatches.length === 0) continue;
+
+    const fieldBoost = fieldMatches.length > 0 ? 30 : 0;
+    const summaryBoost = Math.min(summaryMatches.length * 5, 20);
+    const score = 55 + fieldBoost + summaryBoost;
+    const reasonBits = [];
+    if (fieldMatches.length > 0) reasonBits.push(`field: ${fieldMatches.slice(0, 2).join(', ')}`);
+    if (summaryMatches.length > 0) reasonBits.push(`summary: ${summaryMatches.slice(0, 2).join(', ')}`);
+    const reason = `${rule.label} keyword match (${reasonBits.join('; ')})`;
+
+    for (const institutionId of rule.institutionIds) {
+      addPathwayCandidate(candidates, getInstitutionPathway(institutionId, reason, score));
+    }
+  }
+
+  const pathways = [...candidates.values()]
+    .filter((candidate) => candidate.score >= 60)
+    .sort((a, b) => b.score - a.score)
+    .slice(0, 4);
+
+  return pathways.map(({ score, ...rest }) => rest);
+}
 
 function countQuotes(value) {
   return (value.match(/"/g) || []).length;
@@ -224,6 +379,7 @@ for (const { record, info } of parsedRows) {
     fieldOfStudy: normalized.fieldOfStudy,
     country: normalized.country,
     proposalSummary: normalized.proposalSummary,
+    suggestedPathways: buildSuggestedPathways(normalized),
   };
 
   rawRecords.push(rawEntry);

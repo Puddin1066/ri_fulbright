@@ -11,5 +11,53 @@
     "url": "https://events.uri.edu/event/fulbright-101-where-do-i-begin-graduates",
     "source": "uri",
     "tags": ["Public Events", "Applicant Mentorship", "Universities"]
+  },
+  {
+    "id": "uri-fulbright-campus-deadline-2026-08-17",
+    "title": "URI Fulbright U.S. Student Campus Deadline",
+    "startDate": "2026-08-17",
+    "endDate": "2026-08-17",
+    "timezone": "America/New_York",
+    "location": "University of Rhode Island (campus process)",
+    "description": "Campus submission deadline for URI applicants in the 2027-28 Fulbright U.S. Student cycle.",
+    "url": "https://web.uri.edu/fellowships/fulbright/",
+    "source": "uri",
+    "tags": ["Applicant Mentorship", "Universities", "Public Events"]
+  },
+  {
+    "id": "fulbright-conference-cfp-deadline-2026-07-15",
+    "title": "Fulbright Conference Call for Proposals Deadline",
+    "startDate": "2026-07-15",
+    "endDate": "2026-07-15",
+    "timezone": "America/New_York",
+    "location": "Online submission",
+    "description": "Deadline to submit session proposals for the annual Fulbright Conference, including roundtables and presentations.",
+    "url": "https://conference.fulbright.org/call-for-proposals/",
+    "source": "fulbright-association",
+    "tags": ["Alumni Networking", "Public Events"]
+  },
+  {
+    "id": "fulbright-national-deadline-2026-10-06",
+    "title": "Fulbright U.S. Student National Deadline",
+    "startDate": "2026-10-06",
+    "endDate": "2026-10-06",
+    "timezone": "America/New_York",
+    "location": "Online application portal",
+    "description": "National submission deadline for the 2027-28 Fulbright U.S. Student competition.",
+    "url": "https://us.fulbrightonline.org/fulbright-us-student-program",
+    "source": "fulbright-us-student",
+    "tags": ["Applicant Mentorship", "Public Events"]
+  },
+  {
+    "id": "fulbright-annual-conference-2026",
+    "title": "49th Annual Fulbright Conference",
+    "startDate": "2026-10-23",
+    "endDate": "2026-10-25",
+    "timezone": "America/New_York",
+    "location": "Johns Hopkins Bloomberg Center, Washington, DC",
+    "description": "Annual Fulbright alumni and friends conference focused on diplomacy, career pathways, and global resilience.",
+    "url": "https://conference.fulbright.org/",
+    "source": "fulbright-association",
+    "tags": ["Alumni Networking", "Public Events"]
   }
 ]

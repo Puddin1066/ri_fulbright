@@ -360,6 +360,36 @@
     "lastVerified": "2026-05-19"
   },
   {
+    "id": "ri-hospital",
+    "name": "Rhode Island Hospital",
+    "description": "For Fulbright applicants and alumni in healthcare, medicine, and public health, Rhode Island Hospital is a major clinical and research environment for translational collaboration and professional networking.",
+    "tags": ["Community Partners", "Rhode Island Innovation"],
+    "audience": ["Applicants", "Alumni", "Community Partners"],
+    "actionLabel": "RI Hospital resources",
+    "actionUrl": "https://www.lifespan.org/locations/rhode-island-hospital",
+    "lastVerified": "2026-05-19"
+  },
+  {
+    "id": "lifespan-health-system",
+    "name": "Lifespan Health System",
+    "description": "For Fulbright researchers and alumni in clinical, population-health, and care-delivery fields, Lifespan provides statewide healthcare institutions and collaboration pathways in Rhode Island.",
+    "tags": ["Community Partners", "Rhode Island Innovation"],
+    "audience": ["Alumni", "Community Partners"],
+    "actionLabel": "Lifespan network",
+    "actionUrl": "https://www.lifespan.org/",
+    "lastVerified": "2026-05-19"
+  },
+  {
+    "id": "brown-medicine",
+    "name": "Brown Medicine",
+    "description": "For Fulbright applicants and alumni in medicine, health services, and clinical research, Brown Medicine is a Rhode Island node for physician practice, research, and healthcare partnerships.",
+    "tags": ["Universities", "Community Partners"],
+    "audience": ["Applicants", "Alumni", "Community Partners"],
+    "actionLabel": "Brown Medicine",
+    "actionUrl": "https://brownmed.org/",
+    "lastVerified": "2026-05-19"
+  },
+  {
     "id": "pell-center",
     "name": "Pell Center for International Relations and Public Policy",
     "description": "For Fulbright applicants and alumni in diplomacy, public policy, security, and civic life, the Pell Center offers Rhode Island programming connected to international relations and democratic governance.",
