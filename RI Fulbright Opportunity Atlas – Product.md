@@ -22,7 +22,11 @@ Despite a robust Fulbright alumni presence in Rhode Island, there is no concise,
 
 ### Value proposition (one line)
 
-*One trusted place to find how to participate in Fulbright across Rhode Island—and see seven decades of RI grantee impact—without joining a private list.*
+*One trusted place to turn Fulbright participation in Rhode Island into practical outcomes: mentorship, networking introductions, collaboration opportunities, and visible impact.*
+
+### Strategic objective (leadership framing)
+
+Build an **AI-assisted, human-led public infrastructure** that helps the chapter deliver measurable value between events: stronger applicant support, alumni career/network growth, and partner collaboration.
 
 ### Dual discovery (novel vs generic directory templates)
 
@@ -67,9 +71,10 @@ Footer on Pulse always links **Join / Renew** and **Official chapter** to fulbri
 | Engagement | ≥200 unique visitors in first 3 months |
 | Community input | ≥20 “suggest an addition” emails acted on |
 | Mentorship / collaboration | ≥10 intro requests, ≥5 event proposals (via mailto, not in-app auth) |
+| Career/networking utility | ≥25 documented actions (mentor calls, intros, partner conversations) in first 6 months |
 | Digital leadership | Working Vercel deploy; optional AI digest for campaign |
 
-**Metrics:** resource count, `lastVerified` freshness, Vercel/Plausible analytics, mailto volume, LinkedIn engagement on `/digest` links.
+**Metrics:** resource count, `lastVerified` freshness, Vercel/Plausible analytics, mailto volume, LinkedIn engagement on `/digest` links, and monthly action counts (introductions, mentorship calls, collaboration asks).
 
 ---
 
@@ -203,7 +208,7 @@ Footer → mailto suggest | official chapter join
 | **Nillion / Taxonomy / Supabase starters** | Rejected (wrong domain or auth/DB scope) |
 | **AI newsletter SaaS repos** | Rejected (Clerk/Stripe/email DB overkill) |
 
-**Campaign role:** Pulse is a **pseudo campaign driver**—fresh digest + grantee impact stats + shareable URLs—while official site handles membership.
+**Campaign role:** Pulse is a **pseudo campaign driver** and practical networking surface—fresh digest + grantee impact stats + action-oriented pathways—while official site handles membership.
 
 ---
 
