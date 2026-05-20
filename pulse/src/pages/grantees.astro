@@ -82,10 +82,10 @@ const years = [...new Set(all.map((g) => g.year))].sort((a, b) => b - a);
       </p>
     </div>
 
-    <div id="grantee-grid" class="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+    <div id="grantee-grid" class="mt-8 hidden grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
       {all.map((g) => (
         <div
-          class="grantee-item"
+          class="grantee-item hidden"
           data-year={String(g.year)}
           data-country={g.country}
           data-field={g.fieldOfStudy}
