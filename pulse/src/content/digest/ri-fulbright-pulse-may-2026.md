@@ -1,19 +1,60 @@
 ---
-title: "RI Fulbright Pulse - May 2026 Edition"
-description: "Highlights from the Rhode Island Fulbright Association, including recent statistics, grantee proposals, and mentoring opportunities."
+title: "RI Fulbright Pulse — Monthly Briefing"
+description: "Applicant resources, Rhode Island innovation nodes, and grantee signals for this month."
 pubDate: 2026-05-19
+themes:
+  - Applicant Mentorship
+  - Rhode Island Innovation
+  - Public Health
+featuredLinks:
+  - /atlas?tag=Applicant%20Mentorship
+  - /atlas?tag=Rhode%20Island%20Innovation
+  - /grantees?field=Public%20Health
+shareText: "RI Fulbright Pulse connects applicants, alumni, and partners to Rhode Island opportunities, events, and measurable grantee impact."
 draft: false
 ---
 
-### RI Fulbright Pulse - May 2026 Edition
+## This Month's Signal
 
-**Total Grantees:** 587  
-**Recent Years’ Grantee Counts:**  
+Rhode Island Fulbright has a deep public record of international impact. Pulse translates that history into practical next steps for applicants, alumni, and institutional partners.
+
+**Total Grantees:** 584  
+**Recent Years' Grantee Counts:**  
 - 2025: 12  
 - 2024: 14  
 - 2023: 40  
 
-This month, we spotlight valuable contributions made by our recent grantees working in diverse fields around the globe:
+## For Applicants
+
+Start with advising, then map your field to Rhode Island examples:
+
+- [Brown University — Fulbright U.S. Student Program](https://fellowships.brown.edu/fellowships/fulbright-us-student-program)
+- [URI — Fulbright for students & recent alumni](https://web.uri.edu/fulbright/applicants/students-recent-alumni/)
+- [RISD — Fulbright (Career Center)](https://careercenter.risd.edu/fulbright)
+
+Next: explore [Applicant Mentorship](/atlas?tag=Applicant%20Mentorship) and browse field/country patterns in the grantee explorer.
+
+## For Alumni
+
+Alumni can use Pulse as a lightweight engagement bridge between chapter events:
+
+- Share this issue with applicants in your field
+- Suggest one resource or event for Atlas review
+- Join networking programs through chapter and regional nodes
+
+## For Partners & Institutions
+
+Rhode Island innovation nodes now include life sciences, policy, and cultural institutions that can host or collaborate with Fulbright talent:
+
+- RI Commerce
+- RI Bio / RI Life Science Hub
+- NEMIC / Ocean State Labs
+- URI Sea Grant / Coastal Institute
+- Pell Center / Rhodes Center
+
+Explore [Rhode Island Innovation](/atlas?tag=Rhode%20Island%20Innovation) nodes for partnership pathways.
+
+## Grantee Spotlight
 
 1. **Margaret Hemp (2024)**  
    - **Institution:** Smith College  
@@ -33,29 +74,16 @@ This month, we spotlight valuable contributions made by our recent grantees work
    - **Country:** Portugal  
    - **Proposal Summary:** Living Hope: Sharing Stories of Portugal’s Drug Policy & Harm Reduction Efforts
 
-#### Top Countries of Fulbright Grantees:
+## Top Country Signals
 - **Germany:** 65  
 - **France:** 60  
 - **Italy:** 41  
 - **Spain:** 39  
 - **United Kingdom:** 36
 
-#### Top Fields of Study:
+## Top Field Signals
 - **English Teaching Assistantship:** 135  
 - **Anthropology:** 21  
 - **Art & Architectural History:** 20
 
-#### Upcoming Opportunities:
-- [Brown University — Fulbright U.S. Student Program](https://fellowships.brown.edu/fellowships/fulbright-us-student-program)  
-  *Campus advising for graduating seniors and alumni.*
-  
-- [URI — Fulbright for students & recent alumni](https://web.uri.edu/fulbright/applicants/students-recent-alumni/)  
-  *Office of Fellowships @ URI: adviser meetings and application support.*
-  
-- [RISD — Fulbright (Career Center)](https://careercenter.risd.edu/fulbright)  
-  *Eligibility and advising guidance for students and alumni.*
-
-For further details, visit our [official site](https://rhodeisland.fulbrightchapters.org/).
-
 *Grantee notes are derived from public grant records.*  
-

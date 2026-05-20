@@ -14,3 +14,48 @@ html {
 body {
   @apply bg-stone-50 text-stone-900 antialiased;
 }
+
+.digest-content h2 {
+  @apply mt-8 border-t border-stone-200 pt-6 font-display text-2xl font-bold text-ri-navy;
+}
+
+.digest-content h3 {
+  @apply mt-6 font-display text-xl font-bold text-ri-navy;
+}
+
+.digest-content p {
+  @apply mt-4 leading-7 text-stone-800;
+}
+
+.digest-content ul,
+.digest-content ol {
+  @apply mt-4 space-y-2 pl-6 text-stone-800;
+}
+
+.digest-content ul {
+  @apply list-disc;
+}
+
+.digest-content ol {
+  @apply list-decimal;
+}
+
+.digest-content li > p {
+  @apply mt-1;
+}
+
+.digest-content strong {
+  @apply font-semibold text-ri-navy;
+}
+
+.digest-content a {
+  @apply font-semibold text-ri-navy underline decoration-ri-gold/70 underline-offset-2 hover:text-ri-gold;
+}
+
+.digest-content blockquote {
+  @apply mt-4 rounded-r-lg border-l-4 border-ri-gold bg-stone-100 px-4 py-3 text-stone-700;
+}
+
+.digest-content hr {
+  @apply my-8 border-stone-300;
+}

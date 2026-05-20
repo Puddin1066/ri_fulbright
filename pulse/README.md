@@ -1,6 +1,6 @@
 # RI Fulbright Pulse
 
-Public companion to the [Rhode Island Fulbright chapter](https://rhodeisland.fulbrightchapters.org/): **Opportunity Atlas**, **Grantee Explorer**, **Events**, and **Digest**.
+Public companion to the [Rhode Island Fulbright chapter](https://rhodeisland.fulbrightchapters.org/): **Opportunity Atlas**, **Grantee Explorer**, **Events**, and **Digest** focused on practical outcomes (mentorship, networking, and collaboration).
 
 See the product spec: [../RI Fulbright Opportunity Atlas – Product.md](../RI%20Fulbright%20Opportunity%20Atlas%20%E2%80%93%20Product.md)
 

@@ -8,6 +8,9 @@ const digest = defineCollection({
     title: z.string(),
     description: z.string(),
     pubDate: z.coerce.date(),
+    themes: z.array(z.string()).default([]),
+    featuredLinks: z.array(z.string()).default([]),
+    shareText: z.string().optional(),
     draft: z.boolean().default(false),
   }),
 });
