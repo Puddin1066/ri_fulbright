@@ -3,7 +3,8 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getCollection, render } from 'astro:content';
 
 export async function getStaticPaths() {
-  const posts = await getCollection('digest', ({ data }) => !data.draft);
+  const today = new Date();
+  const posts = await getCollection('digest', ({ data }) => !data.draft && data.pubDate <= today);
   return posts.map((post) => ({
     params: { slug: post.id },
     props: { post },

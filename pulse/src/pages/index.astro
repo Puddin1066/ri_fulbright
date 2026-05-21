@@ -11,7 +11,8 @@ const suggestSubject = encodeURIComponent('RI Fulbright Pulse — Suggest an add
 const suggestBody = encodeURIComponent('Name:\nURL:\nCategory:\nDescription:\n');
 const suggestLink = `mailto:${siteConfig.suggestEmail}?subject=${suggestSubject}&body=${suggestBody}`;
 
-const digests = await getCollection('digest', ({ data }) => !data.draft);
+const today = new Date();
+const digests = await getCollection('digest', ({ data }) => !data.draft && data.pubDate <= today);
 digests.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 const latestDigest = digests[0];
 const upcoming = sortEventsUpcoming(allEvents).filter((e) => e.startDate >= new Date().toISOString().slice(0, 10)).slice(0, 3);

@@ -3,7 +3,8 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import Hero from '../../components/Hero.astro';
 import { getCollection } from 'astro:content';
 
-const posts = await getCollection('digest', ({ data }) => !data.draft);
+const today = new Date();
+const posts = await getCollection('digest', ({ data }) => !data.draft && data.pubDate <= today);
 posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 const latest = posts[0];
 ---

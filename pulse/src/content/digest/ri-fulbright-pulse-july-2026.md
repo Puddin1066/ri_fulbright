@@ -12,7 +12,7 @@ featuredLinks:
   - /atlas?tag=Rhode%20Island%20Innovation
   - /grantees?field=Public%20Health
 shareText: "July RI Fulbright Pulse surfaces field-based pathways and partner nodes to help turn global Fulbright experience into local Rhode Island impact."
-draft: false
+draft: true
 ---
 
 ## Summer Briefing

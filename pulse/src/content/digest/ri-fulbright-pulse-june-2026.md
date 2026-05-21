@@ -12,7 +12,7 @@ featuredLinks:
   - /atlas?tag=Rhode%20Island%20Innovation
   - /grantees?country=Spain
 shareText: "June RI Fulbright Pulse highlights practical pathways for applicants, alumni, and partners to collaborate in Rhode Island."
-draft: false
+draft: true
 ---
 
 ## This Month's Focus
