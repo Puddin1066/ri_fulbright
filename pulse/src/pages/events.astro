@@ -1,17 +1,76 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Hero from '../components/Hero.astro';
-import { allEvents, sortEventsUpcoming } from '../lib/data';
+import { allEvents, leadership, siteConfig, sortEventsUpcoming } from '../lib/data';
 
 const sorted = sortEventsUpcoming(allEvents);
 const today = new Date().toISOString().slice(0, 10);
+const termUpdated = new Date(leadership.lastUpdated).toLocaleDateString('en-US', { dateStyle: 'long' });
 ---
 
-<BaseLayout title="Events" description="Upcoming Fulbright-related events in Rhode Island and New England.">
-  <Hero title="Events" subtitle="Verified upcoming programs from our feed. Always confirm dates on the host site." />
+<BaseLayout title="Events" description="Upcoming Fulbright-related events in Rhode Island and chapter leadership for the current term.">
+  <Hero
+    title="Events & chapter leadership"
+    subtitle="Verified upcoming programs from our feed, plus the elected RI chapter board for the current term."
+  />
+
+  <section id="leadership" class="border-b border-stone-200 bg-white py-10">
+    <div class="mx-auto max-w-6xl px-4">
+      <div class="flex flex-wrap items-end justify-between gap-4">
+        <div>
+          <h2 class="font-display text-2xl font-bold text-ri-navy">Chapter leadership</h2>
+          <p class="mt-2 max-w-2xl text-stone-700">
+            Elected and returning board members for the {leadership.term} term. Membership, dues, and official chapter
+            business remain on the{' '}
+            <a class="font-semibold text-ri-navy underline" href={siteConfig.officialSiteUrl}>chapter website</a>.
+          </p>
+        </div>
+        <p class="text-sm text-stone-500">Updated {termUpdated}</p>
+      </div>
+
+      <div class="mt-8 grid gap-6 md:grid-cols-2">
+        {
+          leadership.roles.map((role) => (
+            <article class="rounded-xl border border-stone-200 bg-stone-50 p-6">
+              <h3 class="font-display text-lg font-bold text-ri-navy">{role.title}</h3>
+              <ul class="mt-4 space-y-2">
+                {role.members.map((member) => (
+                  <li class="text-stone-800">{member.name}</li>
+                ))}
+              </ul>
+            </article>
+          ))
+        }
+      </div>
+
+      {
+        leadership.note && (
+          <p class="mt-6 text-sm text-stone-600">{leadership.note}</p>
+        )
+      }
+
+      <p class="mt-4 text-sm text-stone-600">
+        Official results:{' '}
+        <a class="font-semibold text-ri-navy underline" href={leadership.sourceUrl} target="_blank" rel="noopener noreferrer">
+          Fulbright Association election results
+        </a>
+        {leadership.contactEmail && (
+          <>
+            {' '}· Questions:{' '}
+            <a class="font-semibold text-ri-navy underline" href={`mailto:${leadership.contactEmail}`}>
+              {leadership.contactEmail}
+            </a>
+          </>
+        )}
+      </p>
+    </div>
+  </section>
 
   <section class="mx-auto max-w-6xl px-4 py-10">
-    <ul class="space-y-6">
+    <h2 class="font-display text-2xl font-bold text-ri-navy">Upcoming & recent events</h2>
+    <p class="mt-2 text-stone-600">Always confirm dates on the host site before you plan to attend.</p>
+
+    <ul class="mt-6 space-y-6">
       {
         sorted.map((ev) => {
           const isPast = ev.startDate < today;
@@ -24,7 +83,7 @@ const today = new Date().toISOString().slice(0, 10);
                   <span class="rounded-full bg-stone-100 px-2 py-0.5 text-xs text-stone-600">{t}</span>
                 ))}
               </div>
-              <h2 class="mt-2 font-display text-xl font-bold text-ri-navy">{ev.title}</h2>
+              <h3 class="mt-2 font-display text-xl font-bold text-ri-navy">{ev.title}</h3>
               <p class="mt-1 text-sm text-stone-600">{ev.location}</p>
               <p class="mt-3 text-stone-700">{ev.description}</p>
               <a href={ev.url} target="_blank" rel="noopener noreferrer" class="mt-4 inline-block font-semibold text-ri-navy underline">

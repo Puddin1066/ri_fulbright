@@ -59,3 +59,21 @@ export interface DigestConfig {
   suggestEmail: string;
   siteName: string;
 }
+
+export interface ChapterLeader {
+  name: string;
+}
+
+export interface ChapterRole {
+  title: string;
+  members: ChapterLeader[];
+}
+
+export interface ChapterLeadership {
+  term: string;
+  lastUpdated: string;
+  sourceUrl: string;
+  contactEmail?: string;
+  roles: ChapterRole[];
+  note?: string;
+}

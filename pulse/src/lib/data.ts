@@ -1,11 +1,13 @@
 import opportunities from '../../data/opportunities.json';
 import events from '../../data/events.json';
+import chapterLeadership from '../../data/chapter-leadership.json';
 import digestConfig from '../../data/digest-config.json';
-import type { DigestConfig, FulbrightEvent, Opportunity } from './types';
+import type { ChapterLeadership, DigestConfig, FulbrightEvent, Opportunity } from './types';
 
 export const siteConfig = digestConfig as DigestConfig;
 export const allOpportunities = opportunities as Opportunity[];
 export const allEvents = events as FulbrightEvent[];
+export const leadership = chapterLeadership as ChapterLeadership;
 
 export const ALL_TAGS = [
   'Applicant Mentorship',
